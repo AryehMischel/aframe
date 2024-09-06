@@ -202,7 +202,7 @@ module.exports.Component = registerComponent('hand-controls', {
         var handModelOrientationZ = hand === 'left' ? Math.PI / 2 : -Math.PI / 2;
         // The WebXR standard defines the grip space such that a cylinder held in a closed hand points
         // along the Z axis. The models currently have such a cylinder point along the X-Axis.
-        var handModelOrientationX = el.sceneEl.hasWebXR ? -Math.PI / 2 : 0;
+        var handModelOrientationX = el.sceneEl.hasWebXR ? -Math.PI / 4 : 0;
         mesh.mixer = new THREE.AnimationMixer(mesh);
         self.clips = gltf.animations;
         el.setObject3D('mesh', mesh);
@@ -210,7 +210,7 @@ module.exports.Component = registerComponent('hand-controls', {
           if (!object.isMesh) { return; }
           object.material.color = new THREE.Color(handColor);
         });
-        mesh.position.set(0, 0, 0);
+        mesh.position.set(0, 0, -0.02);
         mesh.rotation.set(handModelOrientationX, 0, handModelOrientationZ);
         el.setAttribute('magicleap-controls', controlConfiguration);
         el.setAttribute('vive-controls', controlConfiguration);
